@@ -1,0 +1,63 @@
+<!-- Título centrado -->
+<div class="page-title">
+  <h1>Rick and Morty Characters</h1>
+</div>
+
+<!-- Botones para cambiar de vista -->
+<div class="view-toggle-buttons">
+  <button
+    mat-icon-button
+    (click)="switchTo('cards')"
+    [disabled]="viewMode() === 'cards'"
+  >
+    <mat-icon>grid_view</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    (click)="switchTo('table')"
+    [disabled]="viewMode() === 'table'"
+  >
+    <mat-icon>list</mat-icon>
+  </button>
+</div>
+
+<!-- Spinner de carga -->
+<div *ngIf="loading()" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+<!-- Vista tipo cards -->
+<div
+  *ngIf="!loading() && viewMode() === 'cards'"
+  class="cards-container animate__animated animate__fadeIn"
+  @fadeIn
+>
+  <app-card
+    *ngFor="let character of characters()"
+    [character]="character"
+    (click)="goToDetail(character.id)"
+  ></app-card>
+</div>
+
+<!-- Vista tipo tabla usando app-grid como filas -->
+<div
+  *ngIf="!loading() && viewMode() === 'table'"
+  class="table-simulated"
+  @fadeIn
+>
+  <!-- Cabecera simulada -->
+  <div class="table-header">
+    <div class="cell">Avatar</div>
+    <div class="cell">Name</div>
+    <div class="cell">Status</div>
+    <div class="cell">Species</div>
+  </div>
+
+  <!-- Filas renderizadas desde GridComponent -->
+  <app-grid
+    *ngFor="let character of characters()"
+    [character]="character"
+    (select)="goToDetail($event)"
+  ></app-grid>
+</div>
+

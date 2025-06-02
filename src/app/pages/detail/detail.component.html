@@ -1,0 +1,39 @@
+<div *ngIf="character" class="detail-wrapper">
+  <mat-card class="character-card mat-elevation-z4">
+
+    <!-- Encabezado -->
+    <mat-card-header class="header">
+      <mat-card-title>{{ character.name }}</mat-card-title>
+      <button mat-stroked-button color="primary" (click)="goBack()">← Back</button>
+    </mat-card-header>
+
+    <!-- Imagen -->
+    <div class="character-image">
+      <img [src]="character.image" alt="{{ character.name }}" />
+    </div>
+
+    <!-- Botón de detalles -->
+    <div style="text-align: center; margin: 1rem 0;">
+      <button mat-button color="accent" (click)="showDetails = !showDetails">
+        {{ showDetails ? 'Hide details' : 'Show all details' }}
+      </button>
+    </div>
+
+    <!-- Panel de detalles -->
+    <mat-expansion-panel *ngIf="showDetails" expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Character Info</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div style="padding: 1rem;">
+        <p><strong>Status:</strong> {{ character.status }}</p>
+        <p><strong>Species:</strong> {{ character.species }}</p>
+        <p><strong>Gender:</strong> {{ character.gender }}</p>
+        <p><strong>Origin:</strong> {{ character.origin?.name }}</p>
+        <p><strong>Location:</strong> {{ character.location?.name }}</p>
+        <p><strong>Power Level:</strong> {{ character.powerLevel }}</p>
+        <p><strong>Favorite Quote:</strong> {{ character.favoriteQuote }}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-card>
+</div>

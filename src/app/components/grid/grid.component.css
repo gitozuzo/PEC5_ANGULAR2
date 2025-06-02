@@ -1,0 +1,20 @@
+.table-row {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  align-items: center;
+}
+
+.cell {
+  flex: 1;
+  padding: 0 12px;
+  font-size: 14px;
+}
+
+.avatar {
+  border-radius: 8px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
